@@ -1,0 +1,50 @@
+<div class="container mt-5 p-4 bg-light rounded shadow-lg" [ngClass]="{ 'bg-dark text-white': isDark }">
+  <!-- Theme Toggle Button -->
+  <div class="text-end mb-2">
+    <button (click)="toggleTheme()" class="btn btn-sm btn-outline-secondary">
+      {{ isDark ? '☀ Light Mode' : '🌙 Dark Mode' }}
+    </button>
+  </div>
+
+  <!-- Title -->
+  <h2 class="text-center text-primary mb-4">MediMatch Emergency Triage</h2>
+
+  <!-- Form -->
+  <form (submit)="onSubmit($event)" enctype="multipart/form-data">
+    <!-- Patient Name -->
+    <div class="form-group mb-3">
+      <label for="name" class="fw-bold">Patient Name</label>
+      <input type="text" class="form-control" [(ngModel)]="patientName" name="name" required>
+    </div>
+
+    <!-- Audio Upload -->
+    <div class="form-group mb-3">
+      <label for="audio" class="fw-bold">Upload Audio File (.mp3)</label>
+      <input type="file" class="form-control" (change)="onFileSelected($event)" accept=".mp3">
+      <small class="form-text text-muted">Optional: Instead, you can type symptoms below.</small>
+    </div>
+
+    <!-- OR: Text Input -->
+    <div class="form-group mb-4">
+      <label class="fw-bold">Or Enter Symptoms Text</label>
+      <textarea class="form-control" [(ngModel)]="textInput" name="text" rows="4" placeholder="Describe the patient's symptoms here..."></textarea>
+    </div>
+
+    <!-- Submit -->
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary px-5 py-2 fw-bold">Submit for Triage</button>
+    </div>
+  </form>
+
+  <!-- Response Output -->
+  <div *ngIf="response" class="mt-5 p-4 bg-white border rounded shadow-sm" [ngClass]="{ 'bg-dark text-white border-light': isDark }">
+    <h4 class="text-success">Triage Result:</h4>
+    <p><strong>Severity Level:</strong> <span class="text-danger">{{ response.severity_level }}</span></p>
+    <p><strong>Reasoning:</strong> {{ response.reasoning }}</p>
+    <p><strong>Transcript:</strong><br> <em>{{ response.transcript }}</em></p>
+
+    <a class="btn btn-outline-success mt-3" [href]="'http://localhost:5000' + response.pdf_url" target="_blank">
+      Download PDF Report
+    </a>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+.upload-container {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  margin: 40px auto;
+  transition: all 0.4s ease;
+}
+
+/* Optional fade-in animation */
+.upload-container {
+  animation: fadeInUp 0.6s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dark mode override */
+body.dark-mode .upload-container {
+  background-color: #1e1e1e;
+  color: #eee;
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.05);
+}

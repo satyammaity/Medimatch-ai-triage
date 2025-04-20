@@ -1,0 +1,6 @@
+flask
+flask-cors
+openai-whisper
+fpdf
+torch
+reportlab

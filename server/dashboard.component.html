@@ -1,0 +1,34 @@
+<div class="container mt-5">
+  <h2>Emergency Triage Dashboard</h2>
+
+  <div *ngIf="patients.length === 0" class="alert alert-warning mt-4">
+    No patients triaged yet.
+  </div>
+
+  <div *ngIf="patients.length > 0" class="table-responsive mt-4">
+    <table class="table table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Name</th>
+          <th>Severity</th>
+          <th>Symptoms</th>
+          <th>Time</th>
+          <th>Report</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of patients">
+          <td>{{ p.name }}</td>
+          <td><strong>{{ p.severity }}</strong></td>
+          <td>{{ p.symptoms }}</td>
+          <td>{{ p.timestamp }}</td>
+          <td>
+            <a class="btn btn-sm btn-outline-primary" [href]="'http://localhost:5000/download/' + p.pdf" download>
+              Download
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
