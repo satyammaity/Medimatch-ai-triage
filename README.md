@@ -1,74 +1,108 @@
-# MediMatch: AI-Powered Emergency Triage System
+# MediMatch – AI-Powered Emergency Triage Assistant
 
-## 🧠 Overview
-MediMatch is an intelligent web application that uses AI to transcribe audio/text-based medical symptoms, classify their severity using NLP techniques, and generate a downloadable emergency report in PDF format.
+MediMatch is an AI-powered medical triage assistant that helps users communicate symptoms through voice or text input. It transcribes audio using OpenAI’s Whisper, classifies the severity using a custom NLP model, and generates a downloadable medical report PDF with AI reasoning.
 
-## 🚀 Features
-- 🎤 Voice and 📝 text-based symptom input
-- 🧠 Whisper AI for real-time audio transcription
-- 🚨 Severity classification using NLP
-- 📄 Downloadable PDF emergency report
-- 🌗 Light/Dark mode toggle UI
-- ⚙️ Simple to deploy with Flask & Angular
+## 🔍 Project Overview
 
-## 👨‍💻 Technologies Used
-- Angular 17 (Frontend)
-- Flask (Backend API)
-- OpenAI Whisper (Speech-to-Text)
-- Python (NLP, PDF generation)
-- Bootstrap 5, Icons, FPDF
+This project provides a fast and accessible way for individuals to report medical emergencies, especially in situations where typing is difficult. Users can either speak or type their symptoms, and the system will generate a severity classification and reasoning, presented in a downloadable PDF report.
 
-## 📦 Setup & Installation
+## ✨ Features
 
-### 📁 Backend (Flask)
+- 🎤 Voice-to-text transcription via OpenAI Whisper
+- 🧠 NLP-based severity classification of symptoms
+- 📄 PDF generation of the final report
+- 🌐 Responsive Angular frontend with dark/light mode
+- ⚡ Flask backend API with seamless proxy integration
+
+## 🛠 Technologies Used
+
+- Frontend: Angular, Bootstrap 5
+- Backend: Python, Flask
+- AI Model: Whisper (base model), custom NLP classifier
+- PDF Generation: FPDF
+- APIs: None (all models are locally run)
+- Version Control: Git & GitHub
+
+## 📁 Folder Structure
+
+```
+medimatch/
+├── client/               # Angular frontend
+│   └── src/app/...       # Components, assets, styles
+├── server/               # Flask backend (transcription, classification, PDF)
+│   ├── app.py            # Main backend server
+│   ├── severity_classifier.py
+│   └── pdf_generator.py
+├── whisper.cpp/          # Optional or experimental whisper integration
+├── proxy.conf.json       # Proxy setup for Angular → Flask
+├── requirements.txt      # Python dependencies
+└── README.md
+```
+
+## ⚙️ Setup and Installation
+
+### Prerequisites
+
+- Node.js + Angular CLI (for frontend)
+- Python 3.9+ and pip (for backend)
+- Git
+
+### Clone the Repository
+
 ```bash
-cd backend
-python -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate on Windows
+git clone https://github.com/your-username/medimatch.git
+cd medimatch
+```
+
+### Setup Backend (Flask)
+
+```bash
+cd server
 pip install -r requirements.txt
 python app.py
 ```
 
-### 🌐 Frontend (Angular)
+Make sure Whisper model downloads successfully during first run.
+
+### Setup Frontend (Angular)
+
 ```bash
-cd frontend
+cd client
 npm install
 ng serve --proxy-config proxy.conf.json
 ```
 
-## 📂 Folder Structure
-```
-root
-├── backend
-│   ├── app.py
-│   ├── severity_classifier.py
-│   ├── pdf_generator.py
-│   ├── uploads/
-│   └── output/
-├── frontend
-│   └── src/app/components/upload
-│       ├── upload.component.ts / html / css
-│       └── services
-├── proxy.conf.json
-└── README.md
+### Proxy Configuration
+
+The Angular frontend uses proxy.conf.json to forward API calls to Flask:
+
+```json
+{
+  "/api": {
+    "target": "http://localhost:5000",
+    "secure": false,
+    "changeOrigin": true
+  }
+}
 ```
 
-## 🔗 Live Demo
-[Insert demo video link here — YouTube/Drive]
+## 🧪 Usage Instructions
+
+- Open the Angular frontend in your browser.
+- Enter your name and either record audio or type your symptoms.
+- Click “Generate Report”.
+- Wait for processing, then download the PDF.
+
+## 🎥 Demo Video
+[A short demo video showcasing all
+](https://drive.google.com/file/d/1QHfp4NXFyklHjhPA7XUvfMw3A-FoVTWz/view?usp=drive_link)
 
 ## 👥 Team Members
-- Your Name
-- Teammate Name 2
-- Teammate Name 3
+- https://github.com/satyammaity (Cyber Forensics & InfoSec – Technique Polytechnic Institute)
+- https://github.com/Darklord900 (Cyber Forensics & InfoSec – Technique Polytechnic Institute)
+- https://github.com/Sounil05 (Cyber Forensics & InfoSec – Technique Polytechnic Institute)
+-  https://github.com/akash007-0 (Cyber Forensics & InfoSec – Technique Polytechnic Institute)
 
-## 📌 Notes
-- All audio uploads are stored temporarily and deleted after report generation.
-- The `proxy.conf.json` is used to redirect API requests from Angular to Flask to avoid CORS.
+## 📄 License
 
-## 📃 License
-This project is licensed for educational and hackathon use only.
-
----
-
-> Be prepared to present and defend your project during evaluations.
-> Only public repositories submitted via HackQuest will be considered.
+This project is open-source under the MIT License.
